@@ -1,0 +1,885 @@
+{
+  "stats": {
+    "suites": 12,
+    "tests": 19,
+    "passes": 17,
+    "pending": 0,
+    "failures": 2,
+    "testsRegistered": 19,
+    "passPercent": 89.47368421052632,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "start": "2024-12-13T04:17:35.710Z",
+    "end": "2024-12-13T04:20:12.494Z",
+    "duration": 156784
+  },
+  "results": [
+    {
+      "uuid": "d9eb8185-d76d-4c38-ab34-0cd10f7ed232",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Assertions.cy.js",
+      "file": "cypress\\e2e\\Assertions.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "0f04ed91-55d6-43dd-add8-9635bb9bb560",
+          "title": "Assertions",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Implicit assertion- should",
+              "fullTitle": "Assertions Implicit assertion- should",
+              "timedOut": null,
+              "duration": 4699,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"https://opensource-demo.orangehrmlive.com/web/index.php/auth/login\");\n// The below steps are asserting the url that's why weve used cy.url\n//keywords- should & and\n//should--include and contain works similarly\ncy.url().should('include', 'orangehrmlive');\ncy.url().should('eq', 'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');\ncy.url().should('contain', 'orangehrm');\n// To avoid repeating the same 'cy.url()', we can simplify it as '.should()' by following the 1st line\ncy.url().should('include', 'orangehrmlive').should('eq', 'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login').should('contain', 'orangehrm');\n// To avoid repeating the same 'should()', we can simplify it as 'and()' by following the 1st line\ncy.url().should('include', 'orangehrmlive').and('eq', 'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login').and('contain', 'orangehrm')\n// //negative assertion- we can use 'not.' in any keyword as negative assertion\n.and('not.contain', 'test');\n// // To validate the title of the web page\ncy.title().should('include', 'Orange').and('include', 'OrangeHRM').and('include', 'HRM');\n// // To validate the logo or web element or images of a webpage present or not (by getting locator from cypress)\ncy.get('.orangehrm-login-branding > img').should('be.visible').and('exist'); // logo exists \n// //Provide value into an input box\ncy.get(\"[name='username']\").type(\"Admin\");\n// // To check whether the value got entered or not\ncy.get(\"[name='username']\").should('have.value', 'Admin');",
+              "err": {},
+              "uuid": "6a997058-90b0-467c-86a1-57824d239387",
+              "parentUUID": "0f04ed91-55d6-43dd-add8-9635bb9bb560",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Explicit assertion- should",
+              "fullTitle": "Assertions Explicit assertion- should",
+              "timedOut": null,
+              "duration": 4456,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"https://opensource-demo.orangehrmlive.com/web/index.php/auth/login\");\ncy.get(\"[name='username']\").type(\"Admin\");\ncy.get(\"[name='password']\").type(\"admin123\");\ncy.get(\"[type='submit']\").click();\n// We need to write a user-defined function whenever we use an explicit assertion- because it is a customized one \n// We've written this as an expected result because a new id is generated for each login - so initially it throws an error, change the name from error\nlet expectedName = \"First Name Last Name\"; // mention any random value initially\n// Locate the element (user id) and capture the id in 'x'\ncy.get(\"[class='oxd-userdropdown-name']\").then($x => {\n  // Store the value that we captured in x into another variable name\n  let actualName = $x.text().trim(); // actual value should be captured and trimmed\n  // BDD approach\n  expect(actualName).to.equal(expectedName); // Positive test\n  //  expect(actualName).to.not.equal(expectedName);  // Negative test\n  // TDD approach\n  assert.equal(actualName, expectedName); // Positive test\n  // assert.notEqual(actualName, expectedName);  // Negative test\n});",
+              "err": {
+                "message": "AssertionError: expected 'Anh Nguyen' to equal 'First Name Last Name'",
+                "estack": "AssertionError: expected 'Anh Nguyen' to equal 'First Name Last Name'\n    at Context.eval (webpack://cypressautomation/./cypress/e2e/Assertions.cy.js:66:28)",
+                "diff": "- 'Anh Nguyen'\n+ 'First Name Last Name'\n"
+              },
+              "uuid": "2f1006cf-408b-496e-91a9-dcf0466b6276",
+              "parentUUID": "0f04ed91-55d6-43dd-add8-9635bb9bb560",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "6a997058-90b0-467c-86a1-57824d239387"
+          ],
+          "failures": [
+            "2f1006cf-408b-496e-91a9-dcf0466b6276"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 9155,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "b6f8c491-b51c-4685-9d97-522daede6f6b",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Checkbox and Radiobtn.cy.js",
+      "file": "cypress\\e2e\\Checkbox and Radiobtn.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e0712e33-a813-406d-a165-5569c8eefa35",
+          "title": "Checkboxes",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Dropdown",
+              "fullTitle": "Checkboxes Dropdown",
+              "timedOut": null,
+              "duration": 4535,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://webdriveruniversity.com/Dropdown-Checkboxes-RadioButtons/index.html');\ncy.get(\"#dropdowm-menu-1\").select('sql');\ncy.get(\"#dropdowm-menu-1\").should('have.value', 'sql');\ncy.get('#dropdowm-menu-1').select('Python');\ncy.get('#dropdowm-menu-1').should('have.value', 'python');\ncy.get('#dropdowm-menu-2').select('Maven');\ncy.get('#dropdowm-menu-2').should('have.value', 'maven');\ncy.get('#dropdowm-menu-3').select('JavaScript');\ncy.get('#dropdowm-menu-3').should('have.value', 'javascript');",
+              "err": {},
+              "uuid": "eb62f244-2bb8-473e-a74e-56f845477d93",
+              "parentUUID": "e0712e33-a813-406d-a165-5569c8eefa35",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "eb62f244-2bb8-473e-a74e-56f845477d93"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4535,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "48232dbb-06bc-497c-a839-14b8e2fde9ef",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Custom command.cy.js",
+      "file": "cypress\\e2e\\Custom command.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "b12624f8-30ff-4f7c-bb69-79b9a822d74a",
+          "title": "Custom command",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Select Location",
+              "fullTitle": "Custom command Select Location",
+              "timedOut": null,
+              "duration": 4647,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.login(\"PreethiSri\", \"pree@0212\"); // custom command added in commands.js\ncy.get(\"#location\").select('London');",
+              "err": {},
+              "uuid": "d0859c47-b951-4716-9f4a-f86855c94a0c",
+              "parentUUID": "b12624f8-30ff-4f7c-bb69-79b9a822d74a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Select Hotel",
+              "fullTitle": "Custom command Select Hotel",
+              "timedOut": null,
+              "duration": 1637,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.login(\"PreethiSri\", \"pree@0212\");\ncy.get(\"#hotels\").select('Hotel Hervey');",
+              "err": {},
+              "uuid": "57d86bc3-2840-4f9f-a3a3-65143bbe272a",
+              "parentUUID": "b12624f8-30ff-4f7c-bb69-79b9a822d74a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Enter date",
+              "fullTitle": "Custom command Enter date",
+              "timedOut": null,
+              "duration": 2376,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.login(\"PreethiSri\", \"pree@0212\");\ncy.get(\"#datepick_in\").type(\"02/05/2024\");\ncy.get(\"#datepick_out\").type(\"12/06/2024\");",
+              "err": {},
+              "uuid": "80a3b85c-b5d0-418f-ade0-f04dbbff57b6",
+              "parentUUID": "b12624f8-30ff-4f7c-bb69-79b9a822d74a",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d0859c47-b951-4716-9f4a-f86855c94a0c",
+            "57d86bc3-2840-4f9f-a3a3-65143bbe272a",
+            "80a3b85c-b5d0-418f-ade0-f04dbbff57b6"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 8660,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "6037b072-4980-4d27-b322-b9888b8afe6a",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Fixture.cy.js",
+      "file": "cypress\\e2e\\Fixture.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "df9079d9-e049-4a94-8458-0b3cac23443e",
+          "title": "Fixture",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "fixture 1",
+              "fullTitle": "Fixture fixture 1",
+              "timedOut": null,
+              "duration": 7152,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"https://adactinhotelapp.com/index.php\");\ncy.get(\"#username\").type(this.data.username); // apply the data by using the defined key in fixture file\ncy.get(\"#password\").type(this.data.password);\ncy.get(\"#login\").click();\n// Assertions   \ncy.title().should('be.equal', 'Adactin.com - Search Hotel');\ncy.url().should('eq', 'https://adactinhotelapp.com/SearchHotel.php').and('contain', 'adactin');\ncy.get(\"#location\").select(this.data.location);\ncy.get(\"#hotels\").select(this.data.hotels);\ncy.get(\"#room_type\").select(this.data.roomType);\ncy.get(\"#room_nos\").select(this.data.roomNos);\ncy.get(\"#datepick_in\").type(this.data.dateIn);\ncy.get(\"#datepick_out\").type(this.data.dateOut);\ncy.get(\"#adult_room\").select(this.data.adultRoom);\ncy.get(\"#child_room\").select(this.data.childRoom);\ncy.get(\"#Submit\").click();\ncy.title().should('be.equal', 'Adactin.com - Select Hotel');",
+              "err": {},
+              "uuid": "d7e7017b-36c2-42e7-9301-4a516bc5d075",
+              "parentUUID": "df9079d9-e049-4a94-8458-0b3cac23443e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d7e7017b-36c2-42e7-9301-4a516bc5d075"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 7152,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "8894a0e6-6be2-48e6-9482-d360328e877e",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Hooks.cy.js",
+      "file": "cypress\\e2e\\Hooks.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "7ee3fd22-91eb-47cb-a0bd-b7ca8c203501",
+          "title": "Hooks",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Select Location",
+              "fullTitle": "Hooks Select Location",
+              "timedOut": null,
+              "duration": 3980,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(\"#location\").select('London');",
+              "err": {},
+              "uuid": "88ab3378-0219-4c98-8bca-ac437fcd45e3",
+              "parentUUID": "7ee3fd22-91eb-47cb-a0bd-b7ca8c203501",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Select Hotel",
+              "fullTitle": "Hooks Select Hotel",
+              "timedOut": null,
+              "duration": 1767,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(\"#hotels\").select('Hotel Hervey');",
+              "err": {},
+              "uuid": "79d55a31-8bd6-46df-8dba-3521289105b9",
+              "parentUUID": "7ee3fd22-91eb-47cb-a0bd-b7ca8c203501",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Enter date",
+              "fullTitle": "Hooks Enter date",
+              "timedOut": null,
+              "duration": 2145,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(\"#datepick_in\").type(\"02/05/2024\");\ncy.get(\"#datepick_out\").type(\"12/06/2024\");",
+              "err": {},
+              "uuid": "0ca7338c-57f6-46dc-9d91-dadca9e7b9f4",
+              "parentUUID": "7ee3fd22-91eb-47cb-a0bd-b7ca8c203501",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "88ab3378-0219-4c98-8bca-ac437fcd45e3",
+            "79d55a31-8bd6-46df-8dba-3521289105b9",
+            "0ca7338c-57f6-46dc-9d91-dadca9e7b9f4"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 7892,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "14e70e63-1646-41c7-93cb-a7250e4503c1",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Navigation.cy.js",
+      "file": "cypress\\e2e\\Navigation.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a073ccd1-0005-4696-a815-67e4fa3b8e6f",
+          "title": "Navigation",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "navigation",
+              "fullTitle": "Navigation navigation",
+              "timedOut": null,
+              "duration": 12663,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"https://www.flipkart.com/\");\ncy.get(\"[class='YBLJE4']\").eq(1).click();\n// Go back to the homepage\ncy.go('back');\ncy.url().should('eq', 'https://www.flipkart.com/');\n//To close the pop up if appears\ncy.get(\"('._30XB9F')\").click();\n// // Go forward to the Mobiles page\ncy.go('forward');\ncy.url().should('contain', 'Mobiles');\n// Go back to the homepage\n// cy.go('back');\n// cy.url().should('eq', 'https://www.flipkart.com/');\n// // // Go forward to the Mobiles page\n// cy.go('forward');\n// cy.url().should('include', '/mobiles');\n// // Close the login popup (if it appears)\n// cy.get('button._2KpZ6l._2doB4z').click();\n// Click on \"Mobiles\" category\n// cy.contains('Mobiles', { matchCase: false }).click();\n// // Verify navigation to the Mobiles page\n// cy.url().should('include', '/mobiles');",
+              "err": {
+                "message": "Error: Syntax error, unrecognized expression: ('._30XB9F')",
+                "estack": "Error: Syntax error, unrecognized expression: ('._30XB9F')\n    at Sizzle.error (https://www.flipkart.com/__cypress/runner/cypress_runner.js:8465:8)\n    at Sizzle.tokenize (https://www.flipkart.com/__cypress/runner/cypress_runner.js:9121:11)\n    at Sizzle.select (https://www.flipkart.com/__cypress/runner/cypress_runner.js:9548:20)\n    at Function.Sizzle [as find] (https://www.flipkart.com/__cypress/runner/cypress_runner.js:7769:9)\n    at jQuery.fn.init.find (https://www.flipkart.com/__cypress/runner/cypress_runner.js:9801:11)\n    at new jQuery.fn.init (https://www.flipkart.com/__cypress/runner/cypress_runner.js:9916:40)\n    at Object.query (https://www.flipkart.com/__cypress/runner/cypress_runner.js:35133:10)\n    at $Cy.$$ (https://www.flipkart.com/__cypress/runner/cypress_runner.js:139922:57)\n    at <unknown> (https://www.flipkart.com/__cypress/runner/cypress_runner.js:131852:18)\n    at Object.subjectFn (https://www.flipkart.com/__cypress/runner/cypress_runner.js:143738:16)\n    at $Cy.verifyUpcomingAssertions (https://www.flipkart.com/__cypress/runner/cypress_runner.js:143077:31)\n    at onRetry (https://www.flipkart.com/__cypress/runner/cypress_runner.js:143729:15)\n    at retryQuery (https://www.flipkart.com/__cypress/runner/cypress_runner.js:143742:10)\n    at <unknown> (https://www.flipkart.com/__cypress/runner/cypress_runner.js:143895:17)\n    at tryCatcher (https://www.flipkart.com/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise._settlePromiseFromHandler (https://www.flipkart.com/__cypress/runner/cypress_runner.js:1542:31)\n    at Promise._settlePromise (https://www.flipkart.com/__cypress/runner/cypress_runner.js:1599:18)\n    at Promise._settlePromiseCtx (https://www.flipkart.com/__cypress/runner/cypress_runner.js:1636:10)\n    at _drainQueueStep (https://www.flipkart.com/__cypress/runner/cypress_runner.js:2434:12)\n    at _drainQueue (https://www.flipkart.com/__cypress/runner/cypress_runner.js:2423:9)\n    at Async._drainQueues (https://www.flipkart.com/__cypress/runner/cypress_runner.js:2439:5)\n    at Async.drainQueues (https://www.flipkart.com/__cypress/runner/cypress_runner.js:2309:14)",
+                "diff": null
+              },
+              "uuid": "b6302b12-8137-4461-b23d-d10402c9c39e",
+              "parentUUID": "a073ccd1-0005-4696-a815-67e4fa3b8e6f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "b6302b12-8137-4461-b23d-d10402c9c39e"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 12663,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "5bd8bf48-341a-48e4-a7fe-1bbe8249be17",
+      "title": "",
+      "fullFile": "cypress\\e2e\\POM TestClass.cy.js",
+      "file": "cypress\\e2e\\POM TestClass.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "012d824a-328c-48b2-a443-a8e5d86bb077",
+          "title": "POM TestClass",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Adactin app",
+              "fullTitle": "POM TestClass Adactin app",
+              "timedOut": null,
+              "duration": 3781,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const login = new _LoginPage.default(); // object of the class\nlogin.visit();\nlogin.userName(\"PreethiSri\");\nlogin.passWord(\"pree@0212\");\nlogin.loginButton();\ncy.title().should('be.equal', 'Adactin.com - Search Hotel'); // assertion\n// can call methods from all page classes under this 'it' block",
+              "err": {},
+              "uuid": "30d33106-534a-450a-99d9-256ed46ac868",
+              "parentUUID": "012d824a-328c-48b2-a443-a8e5d86bb077",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "30d33106-534a-450a-99d9-256ed46ac868"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3781,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "160e72c0-b81f-4f93-8631-7fb78714ae57",
+      "title": "",
+      "fullFile": "cypress\\e2e\\QAonCloud.cy.js",
+      "file": "cypress\\e2e\\QAonCloud.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "13565cce-5284-41a2-87fb-fdd14907dfc2",
+          "title": "Locators",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "test1",
+              "fullTitle": "Locators test1",
+              "timedOut": null,
+              "duration": 13402,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://www.qaoncloud.com/');\ncy.url().should('eq', 'https://www.qaoncloud.com/');\ncy.title().should('include', 'Cloud').and('include', 'QA');\n// Verify the title is visible\ncy.get(\"[alt='QAonCloud Logo']\").should('be.visible');\n//Verify the banner is visible\ncy.get(\"[data-id='9814d64']\").should('be.visible');\n//Verify the footer is visible\ncy.get(\"[data-id='b046965']\").should('be.visible');\n//Contact US\ncy.get(\"[class='elementor-button-text']\").click();\ncy.get(\"[name='name']\").eq(0).type(\"Preethi123\");\ncy.get(\"[name='email']\").eq(0).type(\"preethiqa@gmail.com\");\ncy.get(\"[name='phone']\").eq(0).type(\"9629466261\");\ncy.get(\"[name='companyname']\").eq(0).type(\"ABC company\");\ncy.get(\"[name='role']\").eq(0).type(\"QA\");\ncy.get(\"[name='requirements']\").eq(0).type(\"XYZ\");\n//cy.get(\"[class='recaptcha-checkbox-border']\").eq(1).click();\n// // Verify the offers section is visible and contains specific text\n// cy.get('.offers-section')  \n//   .should('be.visible')  // Check if the offers section is visible\n//   .should('include.text', 'Exclusive Offers');",
+              "err": {},
+              "uuid": "975ed4de-0053-4dd6-a39f-c3962a0249fb",
+              "parentUUID": "13565cce-5284-41a2-87fb-fdd14907dfc2",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "975ed4de-0053-4dd6-a39f-c3962a0249fb"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 13402,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "499bd4b1-51fd-4cbb-941c-515ba663f483",
+      "title": "",
+      "fullFile": "cypress\\e2e\\TestOne.cy.js",
+      "file": "cypress\\e2e\\TestOne.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "4d8dc079-e242-4f59-b356-e33c45eb5147",
+          "title": "TestOne",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "test1",
+              "fullTitle": "TestOne test1",
+              "timedOut": null,
+              "duration": 1253,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://desicrewdtrial.crystalhr.com/');\ncy.title().should('eq', 'Employee Information Portal');",
+              "err": {},
+              "uuid": "8261fab1-fa76-45d7-b46c-cfce0e5e9cc8",
+              "parentUUID": "4d8dc079-e242-4f59-b356-e33c45eb5147",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "8261fab1-fa76-45d7-b46c-cfce0e5e9cc8"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1253,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "60d73378-f838-4eb9-9711-1cc1b208d3e3",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Webtable.cy.js",
+      "file": "cypress\\e2e\\Webtable.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "8f232ca3-88fd-485e-8598-5406c4f55051",
+          "title": "Webtable",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "check no.of rows and columns in the table",
+              "fullTitle": "Webtable check no.of rows and columns in the table",
+              "timedOut": null,
+              "duration": 2794,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(\"table[class='table table-light traversal-table']>tbody>tr\").should('have.length', '3');\ncy.get(\"table[class='table table-light traversal-table']>thead>tr>th\").should('have.length', '3');",
+              "err": {},
+              "uuid": "f3035886-4bfc-40d1-b203-7df951363417",
+              "parentUUID": "8f232ca3-88fd-485e-8598-5406c4f55051",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Check the data from specific row and column",
+              "fullTitle": "Webtable Check the data from specific row and column",
+              "timedOut": null,
+              "duration": 400,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(\"table[class='table table-light traversal-table']>tbody>tr:nth-child(3)>td:nth-child(2)\").contains('Larry');\ncy.get(\"table[class='table table-light traversal-table']>tbody>tr:nth-child(2)>td:nth-child(2)\").contains('Jacob');\ncy.get(\"table[class='table table-light traversal-table']>tbody>tr:nth-child(1)>td:nth-child(2)\").contains('Andy');",
+              "err": {},
+              "uuid": "ba68a833-d492-4cac-a863-ea879b92c839",
+              "parentUUID": "8f232ca3-88fd-485e-8598-5406c4f55051",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Read all rows & columns data in table",
+              "fullTitle": "Webtable Read all rows & columns data in table",
+              "timedOut": null,
+              "duration": 393,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(\"table[class='table table-light traversal-table']>tbody>tr\").each(($row, index, $rows) => {\n  // data from each and evry row\n  cy.wrap($row).within(() => {\n    // data within in a row\n    cy.get(\"td\").each(($col, index, $cols) => {\n      // data within each columns from a row\n      cy.log($col.text()); // To print the data in console   \n    });\n  });\n});",
+              "err": {},
+              "uuid": "d43277bf-891e-482e-b64b-0d00092aee86",
+              "parentUUID": "8f232ca3-88fd-485e-8598-5406c4f55051",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f3035886-4bfc-40d1-b203-7df951363417",
+            "ba68a833-d492-4cac-a863-ea879b92c839",
+            "d43277bf-891e-482e-b64b-0d00092aee86"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3587,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "f7302c10-7163-4629-aab6-e23a4032258c",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Xpath.cy.js",
+      "file": "cypress\\e2e\\Xpath.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "b48bc85c-1a08-4da1-8300-5e7ded1629c3",
+          "title": "Xpath",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "no.of fields",
+              "fullTitle": "Xpath no.of fields",
+              "timedOut": null,
+              "duration": 18804,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://www.qaoncloud.com/');\ncy.get('span.elementor-button-text').click();\ncy.xpath;\n// // Error-- need to check---To check no. of links present on a webpage \n// cy.xpath(\"//a\").should('have.length','5');",
+              "err": {},
+              "uuid": "b6c0471d-d65e-44a6-99c0-c532bba4cfb2",
+              "parentUUID": "b48bc85c-1a08-4da1-8300-5e7ded1629c3",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b6c0471d-d65e-44a6-99c0-c532bba4cfb2"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 18804,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "df07d19d-bd55-4338-ae59-57802cde6a19",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Alerts.cy.js",
+      "file": "cypress\\e2e\\Alerts.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "187f964d-ccc8-4919-b7fb-ed82f5537887",
+          "title": "Alerts",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Prompt alert-cancel button",
+              "fullTitle": "Alerts Prompt alert-cancel button",
+              "timedOut": null,
+              "duration": 5032,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"https://the-internet.herokuapp.com/javascript_alerts\");\n//before clicking the prompt button, we need to trigger some event to pass some text inside the prompt\ncy.window().then(win => {\n  cy.stub(win, 'prompt').returns('null');\n});\n// now can click on the elemet\ncy.get(\"[onclick='jsPrompt()']\").click();\n// Cypress will close prompt by clicking 'cancel' button\ncy.on('window:prompt', () => false);\n//Assertion 2 - By clicking on 'cancel'  button\ncy.get(\"#result\").should('have.text', 'You entered: null');",
+              "err": {},
+              "uuid": "ae67d0f4-32d6-4c28-a63d-86d141d12ba7",
+              "parentUUID": "187f964d-ccc8-4919-b7fb-ed82f5537887",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ae67d0f4-32d6-4c28-a63d-86d141d12ba7"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 5032,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
