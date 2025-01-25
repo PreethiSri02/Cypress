@@ -4,7 +4,7 @@ describe('ReadData',()=>{
     it('fixture 1',function(){
         // custom command 'parseXlsx'
         cy.parseXlsx('cypress/fixtures/AdactinData.xlsx').then((excelData)=>{  // load the data from file into 'excelData'
-            const rowCount = Cypress.$(excelData[0].data).length                // exceData[0] represents 1st sheet
+            const rowCount = Cypress.$(excelData[0].data).length                // excelData[0] represents 1st sheet
             cy.log(rowCount)                   // This will log the number of rows in the sheet
 
             for(let i = 1; i < rowCount; i++){              // 1 = 1st row [index 0,1]  ; [because 0 contains header]
