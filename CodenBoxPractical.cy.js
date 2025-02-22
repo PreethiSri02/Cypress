@@ -193,23 +193,23 @@ describe('CodenBox Automation Lab', () => {
 // Download APK files
     //sample 1
         cy.get('.wp-block-button__link').should('be.visible').and('contain.text','Download Apk files')
-    //   .click({force:true})
+      .click({force:true})
 
     //sample 2
-        //     cy.get('.wp-block-button__link').should('be.visible').and('contain.text','Download Apk files')
-        //     .click({force:true})
-        //     cy.wait(10000);
-        // // Use cy.task() to get the latest downloaded file in the 'cypress/downloads' folder
-        //     cy.task('getLatestFile', 'cypress/downloads').then((latestFile) => {
-        //     cy.log('Latest downloaded file:', latestFile);
-        // // Validate file name follows expected pattern
-        //     expect(latestFile).to.match(/^APKFiles-\d+\.zip$/);
-        // // Verify file exists
-        //     cy.readFile(`cypress/downloads/${latestFile}`).should('exist');
-        // });
+            cy.get('.wp-block-button__link').should('be.visible').and('contain.text','Download Apk files')
+            .click({force:true})
+            cy.wait(10000);
+        // Use cy.task() to get the latest downloaded file in the 'cypress/downloads' folder
+            cy.task('getLatestFile', 'cypress/downloads').then((latestFile) => {
+            cy.log('Latest downloaded file:', latestFile);
+        // Validate file name follows expected pattern
+            expect(latestFile).to.match(/^APKFiles-\d+\.zip$/);
+        // Verify file exists
+            cy.readFile(`cypress/downloads/${latestFile}`).should('exist');
+        });
     //sample 3
-        // cy.get('.wp-block-button__link').should('be.visible').and('contain.text','Download Apk files').click({ force: true });
-        // cy.downloadFile('https://www.codenbox.com/your-apk-file-url', 'cypress/downloads', 'APKFiles-1.zip');   
+        cy.get('.wp-block-button__link').should('be.visible').and('contain.text','Download Apk files').click({ force: true });
+        cy.downloadFile('https://www.codenbox.com/your-apk-file-url', 'cypress/downloads', 'APKFiles-1.zip');   
           
     });
 });
